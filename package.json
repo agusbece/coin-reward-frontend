@@ -1,0 +1,41 @@
+{
+    "name": "membrane-frontend-cc",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "prettier": "prettier --write src/*",
+        "prettier-all": "prettier --write ."
+    },
+    "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@ethersproject/contracts": "^5.7.0",
+        "@ethersproject/providers": "^5.7.2",
+        "@mui/material": "^5.14.18",
+        "@tanstack/react-query": "^5.8.4",
+        "ethers": "^6.8.1",
+        "next": "14.0.3",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-hook-form": "^7.48.2",
+        "web3": "^4.2.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "@types/web3": "^1.2.2",
+        "autoprefixer": "^10.0.1",
+        "eslint": "^8.54.0",
+        "eslint-config-next": "14.0.3",
+        "eslint-config-prettier": "^9.0.0",
+        "postcss": "^8",
+        "prettier": "3.1.0",
+        "tailwindcss": "^3.3.0",
+        "typescript": "^5"
+    }
+}

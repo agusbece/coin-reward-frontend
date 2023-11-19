@@ -1,0 +1,6 @@
+{
+    "extends": ["prettier", "next/core-web-vitals"],
+    "rules": {
+        "max-len": ["error", 120]
+    }
+}
