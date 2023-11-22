@@ -7,10 +7,8 @@ import Survey from '@/components/survey/survey';
 import { EthereumProvider } from './context/wallet.context';
 import Modal from '@/components/modal/modal';
 
-const modalText =
-    `This decentralized application (dApp) demo is created for learning and demonstration purposes only. It is not ` +
-    `designed for production use. If you're interested in a more feature-rich and aesthetically refined dApp, please` +
-    ` feel free to contact me at: `;
+const modalText = `Hi, welcome to the survey rewarding dApp. Developed by: `;
+const modalTitle = `Survey rewarding dApp`;
 
 export default function Home() {
     const [openModal, setOpenModal] = useState(true);
@@ -27,7 +25,7 @@ export default function Home() {
                 <Survey></Survey>
             </main>
             {openModal && (
-                <Modal handleClose={handleClose} text={modalText}>
+                <Modal handleClose={handleClose} text={modalText} title={modalTitle}>
                     <a
                         className="px-4 pb-4 pt-5 sm:m-6 sm:mb-4 font-semibold leading-5 h-5 justify-self-center"
                         href="mailto:becerra.gonzalez.agustin@gmail.com"

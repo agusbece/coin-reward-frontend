@@ -51,7 +51,7 @@ export default function Modal({ children, handleClose, text, title }: ModalProps
                                                 {title}
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-gray-500">{text}</p>
+                                                <p className="mb-4 text-sm text-gray-500">{text}</p>
                                                 {children}
                                             </div>
                                         </div>
