@@ -8,7 +8,7 @@ import { EthereumProvider } from './context/wallet.context';
 import Modal from '@/components/modal/modal';
 
 const modalText =
-    `This demo decentralized application (dApp) is created for learning and demonstration purposes only. It is not ` +
+    `This decentralized application (dApp) demo is created for learning and demonstration purposes only. It is not ` +
     `designed for production use. If you're interested in a more feature-rich and aesthetically refined dApp, please` +
     ` feel free to contact me at: `;
 
