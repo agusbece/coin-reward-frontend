@@ -1,14 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from '@mui/material';
-import Web3 from 'web3';
 import WalletInfo from '../wallet-info/wallet-info';
-import { useEthereum } from '@/hooks/useEthereum';
 
 import surveyJson from '../../../survey-sample.json';
-import QuestionsComponent from './questionsComponent';
+import QuestionsComponent from './question/questionsComponent';
 import { Question } from '@/models/question';
+import { EthereumContext, EthereumContextProps } from '@/app/context/wallet.context';
 
 declare global {
     interface Window {
@@ -16,19 +15,18 @@ declare global {
     }
 }
 
-const Survey: React.FC = () => {
-    let web3: Web3 | undefined;
+const SURVEY_ID = 2n;
 
-    const { submitFormSurveyToContract } = useEthereum();
+const Survey: React.FC = () => {
+    const ethereumContext = useContext(EthereumContext);
+    const { submitFormSurveyToContract } = ethereumContext as EthereumContextProps;
 
     const [answers, setAnswers] = useState<string[] | null>(null);
     const questions: Question[] = surveyJson.questions;
     const [surveyStarted, setSurveyStarted] = useState(false);
 
     const onSubmit = (data: any) => {
-        console.log(data);
-        submitFormSurveyToContract(2n, data);
-        // submitFormSurveyToContract(2n, ['2', '0', '3', '2', '23']);
+        submitFormSurveyToContract(SURVEY_ID, data);
     };
 
     const startSurvey = () => {
@@ -36,7 +34,6 @@ const Survey: React.FC = () => {
     };
 
     const finishSurvey = (answers: string[]) => {
-        console.log(`Survey finished with answers: `, answers);
         setAnswers(answers);
         setSurveyStarted(false);
     };

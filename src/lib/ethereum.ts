@@ -54,7 +54,6 @@ export const submitSurvey = async (
     const contract = new ethers.Contract(contractAddress, quizABI, signer);
 
     try {
-        console.log(`contract`, contract);
         const transaction = await contract.submit(surveyId, surveyData);
         await transaction.wait(); // Wait for the transaction to be mined
     } catch (error) {

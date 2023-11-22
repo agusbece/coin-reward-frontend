@@ -1,15 +1,14 @@
-import React from 'react';
-import { useEthereum } from '../../hooks/useEthereum';
+import React, { useContext } from 'react';
+import { EthereumContext, EthereumContextProps } from '@/app/context/wallet.context';
 
 const WalletInfo: React.FC = () => {
-    const { address, balance } = useEthereum();
-
-    console.log(`address, balance`, address, balance);
+    const ethereumContext = useContext(EthereumContext);
+    const { address, balance } = ethereumContext as EthereumContextProps;
 
     return (
         <div>
             <p>Address: {address}</p>
-            <p>Balance: {balance}</p>
+            <p>Balance: {balance} QUIZ</p>
         </div>
     );
 };

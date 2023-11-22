@@ -1,34 +1,29 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { TextField, Button, Alert } from '@mui/material';
-import Web3 from 'web3';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-
-import WalletInfo from '../wallet-info/wallet-info';
-import { useEthereum } from '@/hooks/useEthereum';
-
+import { ethers } from 'ethers';
 declare global {
     interface Window {
         ethereum: any;
     }
 }
 
-import surveyJson from '../../../survey-sample.json';
+import surveyJson from '../../../../survey-sample.json';
 import { Question } from '@/models/question';
-import { ethers } from 'ethers';
-import { reverse } from 'dns';
 
 const questions = surveyJson.questions;
 
 interface QuestionsComponentProps {
     questions: Question[];
     saveAnswers: (answers: string[]) => void;
+}
+
+interface FormData extends FieldValues {
+    answer?: string;
 }
 
 const answers: string[] = [];
@@ -47,10 +42,6 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
         answerRef.current = answer;
     }, [answer]);
 
-    const onSurveyComplete = (data: any) => {
-        console.log(data);
-    };
-
     useEffect(() => {
         if (currentQuestionIndex !== questions.length) {
             setValue('answer', '');
@@ -62,21 +53,16 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
         }, 1000);
 
         const timeout = setTimeout(() => {
-            console.log(`answerRef.current TIMED OUT =>`, answerRef.current);
-
             if (answerRef.current === '') {
                 // If no answer selected, set answer to MaxUint256
-                // setAnswers((prevAnswers) => [...prevAnswers, ethers.MaxUint256.toString()]);
                 answers.push(ethers.MaxUint256.toString());
             } else {
-                // setAnswers((prevAnswers) => [...prevAnswers, answerRef.current]);
                 answers.push(answerRef.current);
             }
 
             if (currentQuestionIndex < questions.length - 1) {
                 setCurrentQuestionIndex((currentIndex) => currentIndex + 1);
             } else {
-                onSurveyComplete('timeout'); // or handle timeout differently
                 finishQuestions();
             }
         }, currentQuestion.lifetimeSeconds * 1000);
@@ -87,9 +73,8 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
         };
     }, [currentQuestionIndex, setValue, currentQuestion]);
 
-    const onSubmit = (data: any) => {
-        console.log(`DATA => `, data);
-        if (data === '') {
+    const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
+        if (data.answer === '') {
             // If no answer selected, set answer to MaxUint256
             // setAnswers((prevAnswers) => [...prevAnswers, ethers.MaxUint256.toString()]);
             answers.push(ethers.MaxUint256.toString());
@@ -135,23 +120,6 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
                     {currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit'}
                 </Button>
             </Box>
-            {/* <img src={currentQuestion.image} alt={`Question ${currentQuestionIndex + 1}`} />
-            <div>
-                <div>Time remaining: {timer}</div>
-                <h2>{currentQuestion.text}</h2>
-            </div>
-            {currentQuestion.options.map((option, index) => (
-                <div key={index}>
-                    <input
-                        {...register('answer', { required: false })}
-                        type="radio"
-                        value={index}
-                        id={`answer_${index}`}
-                    />
-                    <label htmlFor={`answer_${index}`}>{option.text}</label>
-                </div>
-            ))}
-            <input type="submit" value={currentQuestionIndex < questions.length ? 'Next' : 'Submit'} /> */}
         </form>
     );
 };
