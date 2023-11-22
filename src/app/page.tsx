@@ -7,7 +7,9 @@ import Survey from '@/components/survey/survey';
 import { EthereumProvider } from './context/wallet.context';
 import Modal from '@/components/modal/modal';
 
-const modalText = `Hi, welcome to the survey rewarding dApp. Developed by: `;
+const modalText =
+    `Hi, welcome to the survey rewarding dApp where you can earn a few QUIZ by just answering some basic ` +
+    `survey. Please note that the QUIZ Survey allows only one participation every 60 minutes. Developed by: `;
 const modalTitle = `Survey rewarding dApp`;
 
 export default function Home() {

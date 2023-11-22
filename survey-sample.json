@@ -3,9 +3,9 @@
     "image": "https://48tools.com/wp-content/uploads/2015/09/shortlink.png",
     "questions": [
         {
-            "text": "What makes you feel",
+            "text": "What makes you feel?",
             "image": "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
-            "lifetimeSeconds": 6,
+            "lifetimeSeconds": 12,
             "options": [
                 {
                     "text": "Sweet"
