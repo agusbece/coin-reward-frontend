@@ -1,7 +1,7 @@
 import { web3 } from './web3';
 import { ethers } from 'ethers';
 
-import quizABI from '../../quizABI.json';
+import quizABI from '../../contracts/quizABI.json';
 
 const GOERLI_CHAIN_ID_OLD: bigint = 5n; // Hexadecimal for Goerli
 const GOERLI_CHAIN_ID: bigint = BigInt(process.env.NEXT_PUBLIC_GOERLI_NETWORK_ID || ''); // Hexadecimal for Goerli
@@ -40,5 +40,25 @@ export const getTokenBalance = async (address: string, tokenContractAddress: str
     } catch (error) {
         console.error('Failed to get token balance', error);
         return '0';
+    }
+};
+
+export const submitSurvey = async (
+    contractAddress: string,
+    account: string,
+    surveyId: bigint,
+    surveyData: string[]
+) => {
+    const provider = new ethers.BrowserProvider((web3 as any).currentProvider);
+    const signer = await provider.getSigner(account);
+    const contract = new ethers.Contract(contractAddress, quizABI, signer);
+
+    try {
+        console.log(`contract`, contract);
+        const transaction = await contract.submit(surveyId, surveyData);
+        await transaction.wait(); // Wait for the transaction to be mined
+    } catch (error) {
+        console.error('Error submitting survey:', error);
+        throw error;
     }
 };

@@ -1,0 +1,57 @@
+{
+    "title": "Sample Survey",
+    "image": "https://48tools.com/wp-content/uploads/2015/09/shortlink.png",
+    "questions": [
+        {
+            "text": "What makes you feel",
+            "image": "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
+            "lifetimeSeconds": 6,
+            "options": [
+                {
+                    "text": "Sweet"
+                },
+                {
+                    "text": "Bitter"
+                },
+                {
+                    "text": "Sour"
+                }
+            ]
+        },
+        {
+            "text": "What do you see?",
+            "image": "https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg",
+            "lifetimeSeconds": 125,
+            "options": [
+                {
+                    "text": "Mountain"
+                },
+                {
+                    "text": "Beach"
+                },
+                {
+                    "text": "Fiord"
+                }
+            ]
+        },
+        {
+            "text": "What resembles you?",
+            "image": "https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks2/venice.jpg",
+            "lifetimeSeconds": 15,
+            "options": [
+                {
+                    "text": "Holidays"
+                },
+                {
+                    "text": "Carnival"
+                },
+                {
+                    "text": "Sailing"
+                },
+                {
+                    "text": "Row races"
+                }
+            ]
+        }
+    ]
+}
