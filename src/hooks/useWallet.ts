@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { connectWallet, checkNetwork, getTokenBalance, submitSurvey } from '../lib/ethereum';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { connectWallet, checkNetworkConnection, getTokenBalance, submitSurvey } from '../lib/ethereum';
 import { Uint256 } from 'web3';
 
 const TOKEN_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_QUIZ_CONTRACT_ADDRESS || '';
@@ -7,6 +7,7 @@ const TOKEN_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_QUIZ_CONTRACT_ADDRESS || 
 export const useWallet = () => {
     const [address, setAddress] = useState<string>('');
     const [balance, setBalance] = useState<string>('');
+    const isConnected = useRef(false);
 
     useEffect(() => {
         const init = async () => {
@@ -14,18 +15,22 @@ export const useWallet = () => {
             if (walletAddress) {
                 setAddress(walletAddress);
 
-                const isCorrectNetwork = await checkNetwork();
+                const isCorrectNetwork = await checkNetworkConnection();
                 if (isCorrectNetwork) {
                     // Replace with your wallet address & token contract address
                     const tokenBalance = await getTokenBalance(walletAddress, TOKEN_CONTRACT_ADDRESS);
                     setBalance(tokenBalance);
                 } else {
                     // Handle wrong network scenario
+                    isConnected.current = false;
                 }
             }
         };
-
-        init();
+        // Only initialize if not already connected
+        if (!isConnected.current) {
+            init();
+            isConnected.current = true;
+        }
     }, []);
 
     const updateQUIZBalance = async (address: string) => {
@@ -42,5 +47,5 @@ export const useWallet = () => {
         [address]
     );
 
-    return { address, balance, submitFormSurveyToContract };
+    return { address, balance, isConnected, submitFormSurveyToContract };
 };

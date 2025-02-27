@@ -13,5 +13,7 @@ export const EthereumContext = createContext<EthereumContextProps | null>(null);
 export const EthereumProvider = ({ children }: { children: React.ReactNode }) => {
     const ethereum = useWallet();
 
-    return <EthereumContext.Provider value={ethereum}>{children}</EthereumContext.Provider>;
+    return <EthereumContext.Provider value={ethereum}>
+        {ethereum.isConnected.current ? children : "Wallet is not connected to the correct network"}
+    </EthereumContext.Provider>;
 };

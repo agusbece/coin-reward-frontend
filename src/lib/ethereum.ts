@@ -6,6 +6,8 @@ import quizABI from '../../contracts/quizABI.json';
 const GOERLI_CHAIN_ID_OLD: bigint = 5n; // Hexadecimal for Goerli
 const GOERLI_CHAIN_ID: bigint = BigInt(process.env.NEXT_PUBLIC_GOERLI_NETWORK_ID || ''); // Hexadecimal for Goerli
 
+const SEPOLIA_CHAIN_ID: bigint = BigInt(process.env.NEXT_PUBLIC_SEPOLIA_NETWORK_ID || ''); // Hexadecimal for Sepolia
+
 export const connectWallet = async (): Promise<string | null> => {
     if (web3) {
         try {
@@ -21,10 +23,10 @@ export const connectWallet = async (): Promise<string | null> => {
     }
 };
 
-export const checkNetwork = async (): Promise<boolean> => {
+export const checkNetworkConnection = async (): Promise<boolean> => {
     if (web3) {
         const chainId = await web3.eth.getChainId();
-        return chainId === GOERLI_CHAIN_ID;
+        return chainId === SEPOLIA_CHAIN_ID;
     } else {
         return false;
     }
