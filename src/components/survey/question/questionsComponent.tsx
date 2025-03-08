@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@mui/material';
+import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ethers } from 'ethers';
@@ -106,24 +107,26 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
                 <Box alignItems={'flex-end'}>
                     <p>Time remaining: {timer}</p>
                 </Box>
-                <Box sx={{ maxWidth: '50%' }}>
-                    <img src={currentQuestion.image} alt={`Question ${currentQuestionIndex + 1}`} />
+                <Box sx={{ width: '300px', height: '300px', display: 'flex' }}>
+                    <QuestionImage src={currentQuestion.image} alt={`Question ${currentQuestionIndex + 1}`} />
                 </Box>
                 <Typography variant="h6">{currentQuestion.text}</Typography>
             </Box>
-            {currentQuestion.options.map((option, index) => (
-                <Box key={index} sx={{ marginBottom: '0.5rem' }}>
-                    <input
-                        {...register('answer', { required: false })}
-                        type="radio"
-                        value={index}
-                        id={`answer_${index}`}
-                    />
-                    <label style={{ paddingLeft: '0.5rem' }} htmlFor={`answer_${index}`}>
-                        {option.text}
-                    </label>
-                </Box>
-            ))}
+            <QuestionOptions>
+                {currentQuestion.options.map((option, index) => (
+                    <Box key={index} sx={{ marginBottom: '0.5rem' }}>
+                        <input
+                            {...register('answer', { required: false })}
+                            type="radio"
+                            value={index}
+                            id={`answer_${index}`}
+                        />
+                        <label style={{ paddingLeft: '0.5rem' }} htmlFor={`answer_${index}`}>
+                            {option.text}
+                        </label>
+                    </Box>
+                ))}
+            </QuestionOptions>
             <Box alignItems={'flex-end'}>
                 <Button type="submit" variant="contained" color="secondary">
                     {currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit'}
@@ -134,3 +137,18 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
 };
 
 export default QuestionsComponent;
+
+const QuestionImage = styled.img`
+    border-radius: 2rem;
+    border: 0.5rem solid #51a4ff;
+    margin: 1rem;
+    object-fit: cover;
+`;
+
+const QuestionOptions = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 2rem;
+`;

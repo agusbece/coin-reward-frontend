@@ -31,6 +31,7 @@ const Survey: React.FC = () => {
     };
 
     const startSurvey = () => {
+        setAnswers(null);
         setSurveyStarted(true);
     };
 
@@ -46,7 +47,9 @@ const Survey: React.FC = () => {
             {surveyStarted && !answers ? (
                 <QuestionsComponent questions={questions} saveAnswers={finishSurvey} />
             ) : (
-                <Button onClick={() => startSurvey()}>Start survey</Button>
+                <Button variant="contained" onClick={() => startSurvey()}>
+                    Start survey
+                </Button>
             )}
             {answers && !surveyStarted && <Button onClick={() => onSubmit(answers)}>Submit survey</Button>}
         </>

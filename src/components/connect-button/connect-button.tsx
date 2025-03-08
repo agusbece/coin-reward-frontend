@@ -6,5 +6,9 @@ export const ConnectButton: React.FC = () => {
     const ethereumContext = useContext(EthereumContext);
     const { tryConnectWallet } = ethereumContext as EthereumContextProps;
 
-    return <Button onClick={() => tryConnectWallet()}>Connect Wallet</Button>;
+    return (
+        <Button variant="contained" onClick={() => tryConnectWallet()}>
+            Connect Wallet
+        </Button>
+    );
 };

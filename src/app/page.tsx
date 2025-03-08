@@ -6,6 +6,7 @@ import Survey from '@/components/survey/survey';
 
 import { EthereumProvider } from './context/wallet.context';
 import Modal from '@/components/modal/modal';
+import Footer from '@/components/Footer/Footer';
 
 const modalText =
     `Hi, welcome to the survey rewarding dApp where you can earn a few QUIZ by just answering some basic ` +
@@ -22,8 +23,9 @@ export default function Home() {
     return (
         <>
             <EthereumProvider>
-                <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <main className="flex min-h-screen flex-col items-center justify-between pt-24">
                     <Survey></Survey>
+                    <Footer />
                 </main>
                 {openModal && (
                     <Modal handleClose={handleClose} text={modalText} title={modalTitle}>
