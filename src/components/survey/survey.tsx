@@ -3,6 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { Button } from '@mui/material';
 import WalletInfo from '../wallet-info/wallet-info';
+import { ConnectButton } from '@/components/connect-button/connect-button';
 
 import surveyJson from '../../../survey-sample.json';
 import QuestionsComponent from './question/questionsComponent';
@@ -19,7 +20,7 @@ const SURVEY_ID = 2n;
 
 const Survey: React.FC = () => {
     const ethereumContext = useContext(EthereumContext);
-    const { submitFormSurveyToContract } = ethereumContext as EthereumContextProps;
+    const { isConnected, submitFormSurveyToContract } = ethereumContext as EthereumContextProps;
 
     const [answers, setAnswers] = useState<string[] | null>(null);
     const questions: Question[] = surveyJson.questions;
@@ -38,18 +39,21 @@ const Survey: React.FC = () => {
         setSurveyStarted(false);
     };
 
-    return (
-        <>
-            {answers && <Button onClick={() => setAnswers(null)}>Delete answers ✸✸✸</Button>}
-            <WalletInfo />
-            {surveyStarted && !answers ? (
-                <QuestionsComponent questions={questions} saveAnswers={finishSurvey} />
+    return  isConnected ? (
+                <>
+                    {answers && <Button onClick={() => setAnswers(null)}>Delete answers ✸✸✸</Button>}
+                    <WalletInfo />
+                    {surveyStarted && !answers ? (
+                        <QuestionsComponent questions={questions} saveAnswers={finishSurvey} />
+                    ) : (
+                        <Button onClick={() => startSurvey()}>Start survey</Button>
+                    )}
+                    {answers && !surveyStarted && <Button onClick={() => onSubmit(answers)}>Submit survey</Button>}
+                </>
             ) : (
-                <Button onClick={() => startSurvey()}>Start survey</Button>
-            )}
-            {answers && !surveyStarted && <Button onClick={() => onSubmit(answers)}>Submit survey</Button>}
-        </>
-    );
+                <ConnectButton />
+            ) 
+    ;
 };
 
 export default Survey;

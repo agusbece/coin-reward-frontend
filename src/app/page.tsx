@@ -14,18 +14,16 @@ const modalTitle = `Survey rewarding dApp`;
 
 export default function Home() {
     const [openModal, setOpenModal] = useState(true);
-    console.log('wiiii');
-    // Define your callback using useCallback and specify dependencies
+    
     const handleClose = useCallback(() => {
         setOpenModal(false);
     }, []); // If setOpenModal never changes, you can leave the dependencies array empty
 
     return (
         <>
-            <h1>SURVEY REWARDING dApp</h1>
             <EthereumProvider>
+                <h1>SURVEY REWARDING dApp</h1>
                 <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                    
                     <Survey></Survey>
                 </main>
                 {openModal && (
