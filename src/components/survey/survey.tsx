@@ -39,21 +39,20 @@ const Survey: React.FC = () => {
         setSurveyStarted(false);
     };
 
-    return  isConnected ? (
-                <>
-                    {answers && <Button onClick={() => setAnswers(null)}>Delete answers ✸✸✸</Button>}
-                    <WalletInfo />
-                    {surveyStarted && !answers ? (
-                        <QuestionsComponent questions={questions} saveAnswers={finishSurvey} />
-                    ) : (
-                        <Button onClick={() => startSurvey()}>Start survey</Button>
-                    )}
-                    {answers && !surveyStarted && <Button onClick={() => onSubmit(answers)}>Submit survey</Button>}
-                </>
+    return isConnected ? (
+        <>
+            {answers && <Button onClick={() => setAnswers(null)}>Delete answers ✸✸✸</Button>}
+            <WalletInfo />
+            {surveyStarted && !answers ? (
+                <QuestionsComponent questions={questions} saveAnswers={finishSurvey} />
             ) : (
-                <ConnectButton />
-            ) 
-    ;
+                <Button onClick={() => startSurvey()}>Start survey</Button>
+            )}
+            {answers && !surveyStarted && <Button onClick={() => onSubmit(answers)}>Submit survey</Button>}
+        </>
+    ) : (
+        <ConnectButton />
+    );
 };
 
 export default Survey;

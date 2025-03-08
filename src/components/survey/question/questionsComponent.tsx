@@ -94,8 +94,15 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ marginBottom: '1rem' }} alignItems={'center'}>
+        <form
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
+            onSubmit={handleSubmit(onSubmit)}
+        >
+            <Box sx={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }} alignItems={'center'}>
                 <Box alignItems={'flex-end'}>
                     <p>Time remaining: {timer}</p>
                 </Box>
@@ -112,7 +119,9 @@ const QuestionsComponent = ({ questions, saveAnswers }: QuestionsComponentProps)
                         value={index}
                         id={`answer_${index}`}
                     />
-                    <label htmlFor={`answer_${index}`}>{option.text}</label>
+                    <label style={{ paddingLeft: '0.5rem' }} htmlFor={`answer_${index}`}>
+                        {option.text}
+                    </label>
                 </Box>
             ))}
             <Box alignItems={'flex-end'}>

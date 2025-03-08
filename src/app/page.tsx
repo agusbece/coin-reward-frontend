@@ -14,7 +14,7 @@ const modalTitle = `Survey rewarding dApp`;
 
 export default function Home() {
     const [openModal, setOpenModal] = useState(true);
-    
+
     const handleClose = useCallback(() => {
         setOpenModal(false);
     }, []); // If setOpenModal never changes, you can leave the dependencies array empty

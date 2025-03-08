@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { EthereumContext, EthereumContextProps } from '@/app/context/wallet.context';
+import { truncateAddress } from '@/utils/walletUtils';
 
 const WalletInfo: React.FC = () => {
     const ethereumContext = useContext(EthereumContext);
@@ -7,7 +8,7 @@ const WalletInfo: React.FC = () => {
 
     return (
         <div>
-            <p>Address: {address}</p>
+            <p>Wallet Address: {truncateAddress(address)}</p>
             <p>Balance: {balance} QUIZ</p>
         </div>
     );
