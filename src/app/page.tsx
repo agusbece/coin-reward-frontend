@@ -22,7 +22,6 @@ export default function Home() {
     return (
         <>
             <EthereumProvider>
-                <h1>SURVEY REWARDING dApp</h1>
                 <main className="flex min-h-screen flex-col items-center justify-between p-24">
                     <Survey></Survey>
                 </main>
