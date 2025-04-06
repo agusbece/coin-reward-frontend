@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import Image from 'next/image';
 
 import Survey from '@/components/survey/survey';
 
@@ -47,14 +48,16 @@ export default function Home() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={
-                                            'flex items-center text-orange-500 hover:text-orange-600' +
+                                            'flex items-center text-orange-500 hover:text-orange-600 ' +
                                             'transition-colors duration-200'
                                         }
                                     >
-                                        <img
+                                        <Image
                                             src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
                                             alt="MetaMask"
-                                            className="h-5 w-5 mr-1"
+                                            width={20}
+                                            height={20}
+                                            className="mr-1"
                                         />
                                         <span className="underline">Install MetaMask extension</span>
                                     </a>
@@ -66,7 +69,7 @@ export default function Home() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={
-                                            'ml-2 text-blue-500 hover:text-blue-700 underline transition-colors' +
+                                            'ml-2 text-blue-500 hover:text-blue-700 underline transition-colors ' +
                                             'duration-200'
                                         }
                                     >
