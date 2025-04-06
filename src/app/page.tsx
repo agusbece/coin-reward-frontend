@@ -40,17 +40,18 @@ export default function Home() {
                                 becerra.gonzalez.agustin@gmail.com
                             </a>
 
-                            <div className="bg-gray-50 rounded-lg p-4 w-full max-w-md mx-auto border border-gray-200">
-                                <h3 className="text-sm font-medium text-gray-700 mb-2">Requirements:</h3>
-                                <div className="flex items-center gap-2 mb-2">
+                            <div
+                                className="bg-gray-50 rounded-lg p-4 w-full max-w-md mx-auto border border-gray-200
+                                group"
+                            >
+                                <div className="flex items-center gap-2 mb-4">
+                                    <h3 className="text-sm font-medium text-gray-700 leading-7">Requirements:</h3>
                                     <a
                                         href="https://metamask.io/download/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={
-                                            'flex items-center text-orange-500 hover:text-orange-600 ' +
-                                            'transition-colors duration-200'
-                                        }
+                                        className="flex items-center text-orange-500 hover:text-orange-600 
+                                            transition-colors duration-200"
                                     >
                                         <Image
                                             src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
@@ -59,19 +60,19 @@ export default function Home() {
                                             height={20}
                                             className="mr-1"
                                         />
-                                        <span className="underline">Install MetaMask extension</span>
+                                        <span className="ml-2 underline hidden group-hover:block">
+                                            Install MetaMask extension
+                                        </span>
                                     </a>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex items-center text-sm">
                                     <span className="text-gray-700">& get some Sepolia ETH from any free faucet:</span>
                                     <a
                                         href={sepoliaFaucetURL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={
-                                            'ml-2 text-blue-500 hover:text-blue-700 underline transition-colors ' +
-                                            'duration-200'
-                                        }
+                                        className="ml-2 text-blue-500 hover:text-blue-700 underline transition-colors 
+                                            duration-200"
                                     >
                                         ie
                                     </a>
