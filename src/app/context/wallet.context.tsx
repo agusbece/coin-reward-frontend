@@ -2,7 +2,6 @@ import { createContext } from 'react';
 import { useWallet } from '../../hooks/useWallet';
 
 export interface EthereumContextProps {
-    // Define the properties and methods of the Ethereum context
     address: string;
     balance: string;
     isConnected: boolean;
